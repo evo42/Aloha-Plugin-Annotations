@@ -1,0 +1,14 @@
+Aloha Annotations 
+=================
+
+Aloha Annotations is a plugin for Aloha Editor with extends the Aloha Edior with the possibility of semantic annotations. With semantic annotaions the user should need less time to work with content and should be enabled to produce content in a higher quality. Additionally it should be possible to annotate content transparently for better automatic processing by other systems.
+
+http://aloha-editor.com/wiki/index.php/Semantic_Annotation
+
+INSTALL
+=======
+
+Load the Plugin after you load Aloha Editor
+
+<script type="text/javascript" src="aloha.js"></script>
+<script type="text/javascript" src="annotaions.js"></script>
