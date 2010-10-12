@@ -18,8 +18,8 @@ Load the Plugin after you load Aloha Editor
 <script type="text/javascript" src="annotaions.js"></script>
 
 
-DEVELPMENT
-==========
+DEVELOPMENT
+===========
 
 When you clone from git hub we expect the project "Aloha-Editor" in the same
 directory as the project "Aloha-Annotations". 
