@@ -6,7 +6,7 @@
 */
 
 /**
- * Tha Annotation object is a valid RDFa compatible object. The implementation
+ * The Annotation object is a valid RDFa compatible object. The implementation
  * follows strongly the RDFa specifiaction. http://www.w3.org/TR/rdfa-syntax/#sec_9.1.
  * Do not set properties directly after initialization. Use the constructor to set all properties.
  * 

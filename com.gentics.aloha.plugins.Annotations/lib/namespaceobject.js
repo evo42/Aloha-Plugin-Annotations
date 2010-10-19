@@ -8,12 +8,37 @@
 /**
  * Namespace object to use with annotations
  * Example:
- * var foaf = new GENTICS.Aloha.Annotations.Namespace ('foaf', 'http://xmlns.com/foaf/0.1')
+ * <pre>
+ * var foaf = new GENTICS.Aloha.Annotations.Namespace({ prefix: 'foaf', uri: 'http://xmlns.com/foaf/0.1/'})
+ * </pre>
+ *
+ * @property {string} prefix a string used as shortcut for the namespace URI;
+ * @property {string} uri a URI of the namespace;
+ *
+ * @param {object} attrs all attributes for the namespace.
+ *
  */
-GENTICS.Aloha.Annotations.Namespace = function(prefix, uri) {
-	
-	// @todo check URI if NS is available
-	
-	this.prefix = prefix;
-	this.uri = uri;
+GENTICS.Aloha.Annotations.Namespace = function(attrs) {	
+	if (attrs) {
+		try {
+			this.prefix = this.getAttr('prefix');
+			this.uri = this.getAttr('uri');
+		} catch ( e ) {
+			throw e;
+		}
+		
+		// @todo check if the namespace is available; if not, add it the the parent dom object
+	}
+
 };
+
+GENTICS.Aloha.Annotations.Namespace.prototype.getAttr(name) {
+	
+	var v = this.attrs[name];
+		
+	return v;
+};
+
+GENTICS.Aloha.Annotations.Namespace.prototype.checkNamespace(prefix) {
+	// check with jQuery if Namespace is available in the html header or the parent dom container
+}
