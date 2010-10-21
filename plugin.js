@@ -27,11 +27,11 @@ GENTICS.Aloha.Annotations.createButtons = function () {
     var that = this;
 	
 	// add button to UI for manual annotations and auto-tagging
-}
+};
 
 /**
  * Initialize the plugin
  */
 GENTICS.Aloha.Annotations.init = function () {
 	
-}
+};
