@@ -23,6 +23,7 @@
 	$.fn.autoSuggest = function(data, options) {
 		var defaults = { 
 			asHtmlID: false,
+			disallowDuplicates: true, // rene
 			startText: "Enter Name Here",
 			emptyText: "No Results Found",
 			preFill: {},
@@ -54,6 +55,7 @@
 		
 		var d_type = "object";
 		var d_count = 0;
+		
 		if(typeof data == "string") {
 			d_type = "string";
 			var req_string = data;
@@ -74,6 +76,13 @@
 				var input = $(this);
 				input.attr("autocomplete","off").addClass("as-input").attr("id",x_id).val(opts.startText);
 				var input_focus = false;
+				
+				// Patch to add elements externally
+				// Rene Kapusta 2010/11/10 
+				input[0].add_selected_item = function (data, num){
+					add_selected_item(data, num);
+				}
+				// End Patch
 				
 				// Setup basic elements and render them to the DOM
 				input.wrap('<ul class="as-selections" id="as-selections-'+x+'"></ul>').wrap('<li class="as-original" id="as-original-'+x+'"></li>');
@@ -324,6 +333,39 @@
 				}
 				
 				function add_selected_item(data, num){
+					
+					// rene patch start
+					if (opts.disallowDuplicates == true) {
+						
+						var removedSuggestions = [];
+					    $("#removedSuggestions li").each(function(index) { // move element name to config
+							//console.log(index);
+							removedSuggestions.push($(this).text().toLowerCase());
+						});
+						
+						var e = false;
+						org_li.parent().children().each(function(index) {
+							var el = $(this).clone();
+							el.children('a').remove();
+							if (el.text() == data.name) {
+								e = 1;
+							}
+							
+							if (jQuery.inArray(data.name.toLowerCase(), removedSuggestions) > -1) {
+								e = 2;
+							}
+						  });
+						
+						if (e > 0) {
+							return;
+						}
+					}
+					// rene patch end
+					
+					if (num == undefined) {
+						num = d_count++;
+					}
+					
 					values_input.val(values_input.val()+data[opts.selectedValuesProp]+",");
 					var item = $('<li class="as-selection-item" id="as-selection-'+num+'"></li>').click(function(){
 							opts.selectionClick.call(this, $(this));
@@ -348,20 +390,20 @@
 							var start = lis.eq(0);
 						} else {
 							var start = lis.filter(":last");
-						}					
+						}
 						var active = $("li.active:first", results_holder);
 						if(active.length > 0){
 							if(direction == "down"){
 							start = active.next();
 							} else {
 								start = active.prev();
-							}	
+							}
 						}
 						lis.removeClass("active");
 						start.addClass("active");
 					}
 				}
-									
+
 			});
 		}
 	}

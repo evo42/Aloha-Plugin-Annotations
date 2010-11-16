@@ -16,22 +16,25 @@ GENTICS.Aloha.Annotations = new GENTICS.Aloha.Plugin('com.gentics.aloha.plugins.
 GENTICS.Aloha.Annotations.languages = ['en', 'de'];
 
 /**
- * Default configuration inserts Annotations as span element
- */
-GENTICS.Aloha.Annotations.config.defaultElement = ['span'];
-
-/**
- * Initialize the buttons
- */
-GENTICS.Aloha.Annotations.createButtons = function () {
-    var that = this;
-	
-	// add button to UI for manual annotations and auto-tagging
-};
-
-/**
  * Initialize the plugin
  */
 GENTICS.Aloha.Annotations.init = function () {
+	var that = this;
+	
+	GENTICS.Aloha.Annotations.AnnotationServiceManager.init();
+	GENTICS.Aloha.Annotations.AnnotationWriterManager.init();
+};
+
+/**
+ * Register Annotation Services
+ */
+GENTICS.Aloha.Annotations.registerAnnotationService = function () {
+	
+};
+
+/**
+ * Register Annotation Writer
+ */
+GENTICS.Aloha.Annotations.registerAnnotationWriter = function () {
 	
 };
